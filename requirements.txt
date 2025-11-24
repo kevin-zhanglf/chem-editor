@@ -1,0 +1,44 @@
+# Core dependencies for AgentEvolver polymer design integration examples
+# 
+# Install with: pip install -r requirements.txt
+
+# Gymnasium (OpenAI Gym replacement)
+gymnasium>=0.29.0
+
+# Core scientific computing
+numpy>=1.24.0
+
+# Optional: LLM integration (OpenAI)
+# Uncomment if using LLM planner
+# openai>=1.0.0
+
+# Optional: AgentEvolver (adjust based on actual package name)
+# Uncomment when integrating with AgentEvolver
+# modelscope-agent>=0.1.0
+
+# Optional: Cheminformatics (for BigSMILES parsing and validation)
+# Uncomment when implementing real mutation operators
+# rdkit>=2023.3.1
+# openbabel>=3.1.1
+
+# Optional: Machine Learning (for surrogate models)
+# Uncomment when training/using surrogate models
+# torch>=2.0.0
+# tensorflow>=2.13.0
+# scikit-learn>=1.3.0
+
+# Optional: Visualization
+# Uncomment for visualization features
+# matplotlib>=3.7.0
+# seaborn>=0.12.0
+
+# Optional: Progress tracking
+# Uncomment for better CLI experience
+# tqdm>=4.65.0
+
+# Development dependencies (for testing and linting)
+# Uncomment for development work
+# pytest>=7.4.0
+# flake8>=6.0.0
+# black>=23.0.0
+# mypy>=1.4.0
