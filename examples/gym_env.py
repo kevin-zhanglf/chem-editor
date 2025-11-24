@@ -245,7 +245,9 @@ class PolymerSurrogateEnv(gym.Env):
             self.current_polymer = mutate_block_length(self.current_polymer, new_length=new_length)
         elif action == 2:
             # Adjust composition
-            ratio = np.random.dirichlet([1, 1])
+            # Dirichlet distribution parameters for generating random composition ratios
+            DIRICHLET_ALPHA = [1.0, 1.0]  # Uniform prior over 2-component compositions
+            ratio = np.random.dirichlet(DIRICHLET_ALPHA)
             self.current_polymer = mutate_composition(
                 self.current_polymer,
                 block_ratio={"A": ratio[0], "B": ratio[1]}
@@ -356,7 +358,7 @@ class PolymerSurrogateEnv(gym.Env):
         # Simple hash-based encoding (placeholder)
         encoding = np.zeros(128, dtype=np.float32)
         for i, char in enumerate(bigsmiles[:128]):
-            encoding[i % 128] += ord(char) / 128.0
+            encoding[i] += ord(char) / 128.0
         
         # Normalize
         encoding = encoding / (np.linalg.norm(encoding) + 1e-8)

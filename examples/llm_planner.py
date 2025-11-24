@@ -79,9 +79,9 @@ class LLMPlannerAdapter:
         self.client = None
         if self.provider == "openai" and self.api_key:
             try:
-                import openai
-                openai.api_key = self.api_key
-                self.client = openai
+                from openai import OpenAI
+                # Use OpenAI v1.0+ client initialization
+                self.client = OpenAI(api_key=self.api_key)
             except ImportError:
                 warnings.warn("OpenAI SDK not installed. Install with: pip install openai")
     
@@ -213,7 +213,8 @@ Respond ONLY with valid JSON, no additional text.
         """
         if self.provider == "openai" and self.client:
             try:
-                response = self.client.ChatCompletion.create(
+                # Use OpenAI v1.0+ API
+                response = self.client.chat.completions.create(
                     model=self.model,
                     messages=[
                         {"role": "system", "content": "You are an expert polymer chemist."},

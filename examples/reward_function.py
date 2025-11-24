@@ -210,8 +210,11 @@ def _compute_minimize_reward(value: float, min_val: float, max_val: float) -> fl
     elif value >= max_val:
         return 0.0
     else:
-        # Linear interpolation
-        return 1.0 - (value - min_val) / (max_val - min_val)
+        # Linear interpolation (handle division by zero)
+        denominator = max_val - min_val
+        if denominator == 0:
+            return 0.5  # If range is zero, return neutral reward
+        return 1.0 - (value - min_val) / denominator
 
 
 def compute_multi_objective_reward(
